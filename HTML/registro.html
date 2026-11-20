@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Orbiter - Crea tu cuenta</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../CSS/registro.css">
+</head>
+<body>
+    <main class="split-container">
+        <!-- Panel Izquierdo (Imagen de fondo + Logo superpuesto) -->
+        <section class="left-panel">
+            <div class="overlay"></div>
+            <!-- El logo de Orbiter -->
+            <img src="logo-orbiter.png" alt="Orbiter Logo" class="brand-logo">
+        </section>
+
+        <!-- Panel Derecho (Formulario de Registro) -->
+        <section class="right-panel">
+            <div class="form-wrapper">
+                <span class="subtitle">BIENVENIDO A ORBITER</span>
+                <h1 class="title">Crea tu cuenta</h1>
+
+                <form action="#" method="POST" class="auth-form">
+                    <div class="input-group">
+                        <label for="nombre">Nombre completo</label>
+                        <input 
+                            type="text" 
+                            id="nombre" 
+                            name="nombre" 
+                            placeholder="Marta Habla" 
+                            required
+                        >
+                    </div>
+
+                    <div class="input-group">
+                        <label for="email">Correo electrónico</label>
+                        <input 
+                            type="email" 
+                            id="email" 
+                            name="email" 
+                            placeholder="martahabla123@gmail.com" 
+                            required
+                        >
+                    </div>
+
+                    <div class="input-group">
+                        <label for="password">Contraseña</label>
+                        <input 
+                            type="password" 
+                            id="password" 
+                            name="password" 
+                            placeholder="Mínimo 8 caracteres" 
+                            minlength="8" 
+                            required
+                        >
+                    </div>
+
+                    <button type="submit" class="btn-primary">Crear cuenta</button>
+                </form>
+
+                <hr class="divider">
+
+                <p class="redirect-text">
+                    ¿Ya tienes una cuenta? <a href="login.html">Inicia sesión</a>
+                </p>
+            </div>
+        </section>
+    </main>
+</body>
+</html>

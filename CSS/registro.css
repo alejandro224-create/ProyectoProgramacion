@@ -1,0 +1,192 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+body {
+    background-color: #fbfaf8;
+    color: #1f2421;
+    height: 100vh;
+    overflow: hidden;
+}
+
+.split-container {
+    display: flex;
+    width: 100%;
+    height: 100vh;
+}
+
+/* --- Panel Izquierdo (Multicapa) --- */
+.left-panel {
+    width: 58%;
+    height: 100%;
+    position: relative;
+    /* La imagen flatlay de fondo que me compartiste */
+    background-image: url('fondo-objetos.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 40px;
+}
+
+/* Capa oscura/verde para contraste */
+.left-panel .overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, rgba(20, 35, 30, 0.85) 0%, rgba(24, 66, 43, 0.7) 100%);
+    z-index: 1;
+}
+
+/* El logo de Orbiter centrado */
+.brand-logo {
+    position: relative;
+    z-index: 2;
+    width: 100%;
+    max-width: 320px;
+    height: auto;
+    object-fit: contain;
+    filter: drop-shadow(0 10px 20px rgba(0,0,0,0.15));
+}
+
+/* --- Panel Derecho (Formulario) --- */
+.right-panel {
+    width: 42%;
+    height: 100%;
+    background-color: #fbfaf8;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 40px;
+}
+
+.form-wrapper {
+    width: 100%;
+    max-width: 340px;
+}
+
+.subtitle {
+    display: block;
+    font-size: 0.65rem;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    color: #7c827e;
+    text-transform: uppercase;
+    margin-bottom: 10px;
+}
+
+.title {
+    font-size: 1.75rem;
+    font-weight: 700;
+    color: #1c1f1d;
+    letter-spacing: -0.02em;
+    margin-bottom: 24px;
+}
+
+.auth-form {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.input-group {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.input-group label {
+    font-size: 0.72rem;
+    font-weight: 600;
+    color: #2d322f;
+}
+
+.input-group input {
+    width: 100%;
+    padding: 11px 14px;
+    background-color: #f3f2ef;
+    border: 1px solid transparent;
+    border-radius: 6px;
+    font-size: 0.78rem;
+    color: #1f2421;
+    outline: none;
+    transition: border-color 0.2s ease, background-color 0.2s ease;
+}
+
+.input-group input::placeholder {
+    color: #9ea3a0;
+}
+
+.input-group input:focus {
+    background-color: #ffffff;
+    border-color: #18422b;
+}
+
+.btn-primary {
+    margin-top: 6px;
+    width: 100%;
+    padding: 12px;
+    background-color: #18422b;
+    color: #ffffff;
+    border: none;
+    border-radius: 6px;
+    font-size: 0.78rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+.btn-primary:hover {
+    background-color: #123321;
+}
+
+.divider {
+    border: none;
+    border-top: 1px solid #eceae6;
+    margin: 22px 0 18px 0;
+}
+
+.redirect-text {
+    text-align: center;
+    font-size: 0.72rem;
+    color: #555b58;
+}
+
+.redirect-text a {
+    color: #1f2421;
+    font-weight: 700;
+    text-decoration: none;
+}
+
+.redirect-text a:hover {
+    text-decoration: underline;
+}
+
+/* --- Responsivo --- */
+@media (max-width: 850px) {
+    body {
+        overflow: auto;
+    }
+    .split-container {
+        flex-direction: column;
+        height: auto;
+    }
+    .left-panel {
+        width: 100%;
+        height: 300px;
+    }
+    .brand-logo {
+        max-width: 200px;
+    }
+    .right-panel {
+        width: 100%;
+        padding: 40px 24px;
+    }
+}
