@@ -390,11 +390,6 @@ body {
     transform: scale(1.06);
 }
 
-.add-btn.disabled {
-    background-color: #c2cbc6;
-    cursor: not-allowed;
-}
-
 /* --- Responsivo --- */
 @media (max-width: 1050px) {
     .products-grid {

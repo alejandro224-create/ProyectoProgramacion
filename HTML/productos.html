@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Orbiter - Productos e Inventario</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../CSS/productos.css">
+</head>
+<body>
+    <div class="app-layout">
+        <!-- Barra Lateral Izquierda (Sidebar) -->
+        <aside class="sidebar">
+            <div class="sidebar-top">
+                <div class="logo-box">
+                    <img src="../SOURCES/logo-orbiter.png" alt="Orbiter" class="sidebar-logo">
+                </div>
+
+                <nav class="nav-menu">
+                    <a href="home.html" class="nav-item">
+                        <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+                            <path d="M3 10.5L12 3l9 7.5V20a1 1 0 0 1-1 1h-5v-6H9v6H4a1 1 0 0 1-1-1v-9.5z"/>
+                        </svg>
+                        <span>Inicio</span>
+                    </a>
+
+                    <a href="productos.html" class="nav-item active">
+                        <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+                            <path d="M12 3l9 4.5-9 4.5-9-4.5L12 3z"/>
+                            <path d="M3 12l9 4.5 9-4.5"/>
+                            <path d="M3 17l9 4.5 9-4.5"/>
+                        </svg>
+                        <span>Productos</span>
+                    </a>
+
+                    <a href="carrito.html" class="nav-item">
+                        <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+                            <circle cx="9" cy="20" r="1.5"/>
+                            <circle cx="18" cy="20" r="1.5"/>
+                            <path d="M3 4h2l2.4 11.2a1 1 0 0 0 1 .8h9.8a1 1 0 0 0 1-.8L21 7H6"/>
+                        </svg>
+                        <span>Carrito</span>
+                    </a>
+
+                    <a href="#compras" class="nav-item">
+                        <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+                            <path d="M6 3h12v18l-3-2-3 2-3-2-3 2V3z"/>
+                            <line x1="9" y1="8" x2="15" y2="8"/>
+                            <line x1="9" y1="12" x2="15" y2="12"/>
+                        </svg>
+                        <span>Compras</span>
+                    </a>
+
+                    <a href="#usuarios" class="nav-item">
+                        <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+                            <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/>
+                            <circle cx="9" cy="7" r="4"/>
+                            <path d="M22 21v-2a4 4 0 0 0-3-3.87"/>
+                            <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+                        </svg>
+                        <span>Usuarios</span>
+                    </a>
+
+                    <a href="#reportes" class="nav-item">
+                        <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+                            <line x1="6" y1="20" x2="6" y2="14"/>
+                            <line x1="12" y1="20" x2="12" y2="9"/>
+                            <line x1="18" y1="20" x2="18" y2="5"/>
+                        </svg>
+                        <span>Reportes</span>
+                    </a>
+                </nav>
+            </div>
+
+            <!-- Pie del Sidebar -->
+            <div class="sidebar-footer">
+                <div class="user-profile">
+                    <div class="user-avatar">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+                            <circle cx="12" cy="12" r="9"/>
+                            <circle cx="12" cy="9.5" r="3"/>
+                            <path d="M6.8 18.2a6.5 6.5 0 0 1 10.4 0"/>
+                        </svg>
+                    </div>
+                    <div class="user-info">
+                        <span class="user-email">Correo electrónico</span>
+                        <span class="user-role">Administrador</span>
+                    </div>
+                </div>
+
+                <a href="login.html" class="logout-btn" title="Cerrar sesión">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/>
+                        <polyline points="16 17 21 12 16 7"/>
+                        <line x1="21" y1="12" x2="9" y2="12"/>
+                    </svg>
+                </a>
+            </div>
+        </aside>
+
+        <!-- Contenido Principal -->
+        <main class="main-content">
+            <div class="page-header">
+                <div>
+                    <span class="eyebrow">INVENTARIO</span>
+                    <h1 class="page-title">Productos</h1>
+                    <p class="catalog-count" id="catalog-count">5 productos en el catálogo</p>
+                </div>
+
+                <button type="button" class="btn-new-product" id="btn-open-create">
+                    <span>+</span>
+                    <span>Nuevo producto</span>
+                </button>
+            </div>
+
+            <!-- Tabla de Productos -->
+            <div class="table-card">
+                <table class="products-table">
+                    <thead>
+                        <tr>
+                            <th>PRODUCTO</th>
+                            <th>CATEGORÍA</th>
+                            <th>PRECIO</th>
+                            <th>INVENTARIO</th>
+                            <th>ESTADO</th>
+                            <th class="actions-col"></th>
+                        </tr>
+                    </thead>
+                    <tbody id="products-tbody">
+                        <!-- Filas generadas dinámicamente por JavaScript -->
+                    </tbody>
+                </table>
+            </div>
+        </main>
+    </div>
+
+    <!-- Modal Agregar / Editar Producto -->
+    <div class="modal-backdrop" id="product-modal" aria-hidden="true">
+        <div class="modal-window" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+            <div class="modal-topbar">
+                <span class="sr-only" id="modal-title">Formulario de producto</span>
+                <div class="window-controls">
+                    <button type="button" class="win-btn" id="btn-minimize-modal" title="Minimizar">—</button>
+                    <button type="button" class="win-btn" id="btn-expand-modal" title="Ampliar">□</button>
+                    <button type="button" class="win-btn" id="btn-close-modal" title="Cerrar">✕</button>
+                </div>
+            </div>
+
+            <form id="product-form" class="modal-form">
+                <input type="hidden" id="product-id">
+
+                <div class="form-group">
+                    <label for="product-name">Nombre del producto</label>
+                    <input 
+                        type="text" 
+                        id="product-name" 
+                        name="nombre" 
+                        placeholder="Ej. Auriculares Studio" 
+                        required
+                    >
+                </div>
+
+                <div class="form-row-2">
+                    <div class="form-group">
+                        <label for="product-category">Categoría</label>
+                        <select id="product-category" name="categoria" required>
+                            <option value="Tecnología">Tecnología</option>
+                            <option value="Audio">Audio</option>
+                            <option value="Calzado">Calzado</option>
+                            <option value="Accesorios">Accesorios</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="product-price">Precio</label>
+                        <input 
+                            type="number" 
+                            id="product-price" 
+                            name="precio" 
+                            step="0.01" 
+                            min="0" 
+                            placeholder="0.00" 
+                            required
+                        >
+                    </div>
+                </div>
+
+                <div class="form-group form-group-half">
+                    <label for="product-stock">Stock</label>
+                    <input 
+                        type="number" 
+                        id="product-stock" 
+                        name="stock" 
+                        min="0" 
+                        step="1" 
+                        placeholder="0" 
+                        required
+                    >
+                </div>
+
+                <div class="form-group">
+                    <label for="product-description">Descripción</label>
+                    <textarea 
+                        id="product-description" 
+                        name="descripcion" 
+                        rows="3" 
+                        placeholder="Describe las características principales..."
+                    ></textarea>
+                </div>
+
+                <div class="modal-actions">
+                    <button type="button" class="btn-cancel" id="btn-cancel-modal">Cancelar</button>
+                    <button type="submit" class="btn-save">Guardar producto</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script src="../JS/orbiter-storage.js"></script>
+    <script>
+        let productos = getProducts();
+
+        const tbody = document.getElementById('products-tbody');
+        const catalogCount = document.getElementById('catalog-count');
+        const modal = document.getElementById('product-modal');
+        const modalWindow = modal.querySelector('.modal-window');
+        const form = document.getElementById('product-form');
+
+        const inputId = document.getElementById('product-id');
+        const inputName = document.getElementById('product-name');
+        const inputCategory = document.getElementById('product-category');
+        const inputPrice = document.getElementById('product-price');
+        const inputStock = document.getElementById('product-stock');
+        const inputDescription = document.getElementById('product-description');
+
+        const btnOpenCreate = document.getElementById('btn-open-create');
+        const btnCancelModal = document.getElementById('btn-cancel-modal');
+        const btnCloseModal = document.getElementById('btn-close-modal');
+        const btnExpandModal = document.getElementById('btn-expand-modal');
+        const btnMinimizeModal = document.getElementById('btn-minimize-modal');
+
+        function formatCurrency(value) {
+            return Number(value).toLocaleString('en-US', {
+                minimumFractionDigits: 2,
+                maximumFractionDigits: 2
+            });
+        }
+
+        function syncCartStockWithProducts() {
+            const cart = getCart();
+            const updatedCart = cart
+                .map(item => {
+                    const prod = productos.find(p => p.id === item.id);
+                    if (!prod || Number(prod.stock) <= 0) return null;
+                    return {
+                        ...item,
+                        nombre: prod.nombre,
+                        categoria: String(prod.categoria || '').toUpperCase(),
+                        precioUnitario: Number(prod.precio),
+                        stock: Number(prod.stock),
+                        cantidad: Math.min(Number(item.cantidad), Number(prod.stock)),
+                        imagen: prod.imagen
+                    };
+                })
+                .filter(Boolean);
+            saveCart(updatedCart);
+        }
+
+        function renderProducts() {
+            productos = getProducts();
+            tbody.innerHTML = '';
+
+            if (productos.length === 0) {
+                tbody.innerHTML = `
+                    <tr>
+                        <td colspan="6" class="empty-row">No hay productos registrados en el catálogo.</td>
+                    </tr>
+                `;
+            } else {
+                productos.forEach(prod => {
+                    const tr = document.createElement('tr');
+                    tr.innerHTML = `
+                        <td>
+                            <div class="product-cell">
+                                <div class="thumb-box">
+                                    <img src="${prod.imagen}" alt="${prod.nombre}" onerror="this.style.display='none'">
+                                </div>
+                                <div class="product-meta">
+                                    <span class="product-name">${prod.nombre}</span>
+                                    <span class="product-sku">${prod.sku}</span>
+                                </div>
+                            </div>
+                        </td>
+                        <td class="category-cell">${prod.categoria}</td>
+                        <td class="price-cell">$${formatCurrency(prod.precio)}</td>
+                        <td class="stock-cell">${prod.stock} unidades</td>
+                        <td>${getStockBadgeHTML(prod.stock)}</td>
+                        <td class="actions-cell">
+                            <button type="button" class="action-icon-btn" onclick="openEditModal(${prod.id})" title="Editar producto" aria-label="Editar ${prod.nombre}">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+                                    <path d="M12 20h9"/>
+                                    <path d="M16.5 3.5a2.12 2.12 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/>
+                                </svg>
+                            </button>
+                            <button type="button" class="action-icon-btn" onclick="deleteProduct(${prod.id})" title="Eliminar producto" aria-label="Eliminar ${prod.nombre}">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+                                    <polyline points="3 6 5 6 21 6"/>
+                                    <path d="M19 6l-1 14a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2L5 6"/>
+                                    <path d="M10 11v6"/>
+                                    <path d="M14 11v6"/>
+                                    <path d="M9 6V4a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v2"/>
+                                </svg>
+                            </button>
+                        </td>
+                    `;
+                    tbody.appendChild(tr);
+                });
+            }
+
+            catalogCount.textContent = `${productos.length} ${productos.length === 1 ? 'producto' : 'productos'} en el catálogo`;
+        }
+
+        function openCreateModal() {
+            form.reset();
+            inputId.value = '';
+            modalWindow.classList.remove('expanded', 'minimized');
+            modal.classList.add('open');
+            modal.setAttribute('aria-hidden', 'false');
+            inputName.focus();
+        }
+
+        function openEditModal(id) {
+            const prod = productos.find(item => item.id === id);
+            if (!prod) return;
+
+            inputId.value = prod.id;
+            inputName.value = prod.nombre;
+            inputPrice.value = Number(prod.precio).toFixed(2);
+            inputStock.value = prod.stock;
+            inputDescription.value = prod.descripcion || '';
+
+            const existsOption = Array.from(inputCategory.options).some(opt => opt.value === prod.categoria);
+            if (!existsOption) {
+                const newOpt = document.createElement('option');
+                newOpt.value = prod.categoria;
+                newOpt.textContent = prod.categoria;
+                inputCategory.appendChild(newOpt);
+            }
+            inputCategory.value = prod.categoria;
+
+            modalWindow.classList.remove('expanded', 'minimized');
+            modal.classList.add('open');
+            modal.setAttribute('aria-hidden', 'false');
+        }
+
+        function closeModal() {
+            modal.classList.remove('open');
+            modal.setAttribute('aria-hidden', 'true');
+        }
+
+        function deleteProduct(id) {
+            productos = productos.filter(item => item.id !== id);
+            saveProducts(productos);
+            syncCartStockWithProducts();
+            renderProducts();
+        }
+
+        form.addEventListener('submit', (e) => {
+            e.preventDefault();
+
+            const nombre = inputName.value.trim();
+            const categoria = inputCategory.value;
+            const precio = parseFloat(inputPrice.value);
+            const stock = parseInt(inputStock.value, 10);
+            const descripcion = inputDescription.value.trim();
+
+            if (!nombre || isNaN(precio) || isNaN(stock)) return;
+
+            if (inputId.value) {
+                const id = Number(inputId.value);
+                productos = productos.map(item =>
+                    item.id === id
+                        ? { ...item, nombre, categoria, precio, stock, descripcion }
+                        : item
+                );
+            } else {
+                const nextId = productos.length ? Math.max(...productos.map(p => p.id)) + 1 : 1;
+                const skuNumber = String(nextId).padStart(4, '0');
+                productos.push({
+                    id: nextId,
+                    nombre,
+                    sku: `SKU-${skuNumber}`,
+                    categoria,
+                    precio,
+                    stock,
+                    imagen: '../SOURCES/productos/producto-default.png',
+                    descripcion
+                });
+            }
+
+            saveProducts(productos);
+            syncCartStockWithProducts();
+            renderProducts();
+            closeModal();
+        });
+
+        btnOpenCreate.addEventListener('click', openCreateModal);
+        btnCancelModal.addEventListener('click', closeModal);
+        btnCloseModal.addEventListener('click', closeModal);
+        btnExpandModal.addEventListener('click', () => {
+            modalWindow.classList.remove('minimized');
+            modalWindow.classList.toggle('expanded');
+        });
+        btnMinimizeModal.addEventListener('click', () => {
+            modalWindow.classList.remove('expanded');
+            modalWindow.classList.toggle('minimized');
+        });
+
+        modal.addEventListener('click', (e) => {
+            if (e.target === modal) closeModal();
+        });
+
+        renderProducts();
+    </script>
+</body>
+</html>

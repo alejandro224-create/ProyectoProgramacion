@@ -26,7 +26,7 @@
                         <span>Inicio</span>
                     </a>
 
-                    <a href="#productos" class="nav-item">
+                    <a href="productos.html" class="nav-item">
                         <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
                             <path d="M12 3l9 4.5-9 4.5-9-4.5L12 3z"/>
                             <path d="M3 12l9 4.5 9-4.5"/>
@@ -35,7 +35,7 @@
                         <span>Productos</span>
                     </a>
 
-                    <a href="#carrito" class="nav-item" id="nav-carrito">
+                    <a href="carrito.html" class="nav-item" id="nav-carrito">
                         <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
                             <circle cx="9" cy="20" r="1.5"/>
                             <circle cx="18" cy="20" r="1.5"/>
@@ -171,7 +171,7 @@
                         <span class="status-badge status-out">• Agotado</span>
                         <div class="product-footer">
                             <span class="product-price">$1,500.00</span>
-                            <button type="button" class="add-btn disabled" disabled title="Producto agotado" aria-label="Producto agotado">+</button>
+                            <button type="button" class="add-btn" disabled title="Producto agotado" aria-label="Producto agotado">+</button>
                         </div>
                     </article>
 
@@ -221,27 +221,109 @@
         </main>
     </div>
 
+    <script src="../JS/orbiter-storage.js"></script>
     <script>
         const pills = document.querySelectorAll('.pill');
-        const cards = document.querySelectorAll('.product-card');
+        const productsGrid = document.getElementById('products-grid');
         const searchInput = document.getElementById('search-input');
-        const addButtons = document.querySelectorAll('.add-btn:not(.disabled)');
         const cartCountEl = document.getElementById('cart-count');
+        const navCarrito = document.getElementById('nav-carrito');
 
         let activeCategory = 'todos';
-        let cartCount = 0;
 
-        function filterProducts() {
+        if (navCarrito) {
+            navCarrito.setAttribute('href', 'carrito.html');
+        }
+
+        function formatMoney(amount) {
+            return '$' + Number(amount).toLocaleString('en-US', {
+                minimumFractionDigits: 2,
+                maximumFractionDigits: 2
+            });
+        }
+
+        function updateCartBadge() {
+            const cart = getCart();
+            const totalItems = cart.reduce((sum, item) => sum + Number(item.cantidad || 0), 0);
+            cartCountEl.textContent = totalItems;
+            cartCountEl.classList.toggle('visible', totalItems > 0);
+        }
+
+        function addToCart(productId) {
+            const products = getProducts();
+            const prod = products.find(p => p.id === productId);
+            if (!prod || Number(prod.stock) <= 0) return;
+
+            const cart = getCart();
+            const existing = cart.find(item => item.id === productId);
+            const currentQtyInCart = existing ? Number(existing.cantidad) : 0;
+
+            if (currentQtyInCart >= Number(prod.stock)) {
+                return;
+            }
+
+            if (existing) {
+                existing.cantidad = currentQtyInCart + 1;
+                existing.precioUnitario = Number(prod.precio);
+                existing.stock = Number(prod.stock);
+                existing.imagen = prod.imagen;
+            } else {
+                cart.push({
+                    id: prod.id,
+                    nombre: prod.nombre,
+                    categoria: String(prod.categoria || '').toUpperCase(),
+                    precioUnitario: Number(prod.precio),
+                    cantidad: 1,
+                    stock: Number(prod.stock),
+                    imagen: prod.imagen
+                });
+            }
+
+            saveCart(cart);
+            updateCartBadge();
+        }
+
+        function renderCatalog() {
+            const products = getProducts();
             const query = searchInput.value.trim().toLowerCase();
 
-            cards.forEach(card => {
-                const category = card.dataset.category;
-                const name = card.dataset.name.toLowerCase();
+            const filtered = products.filter(prod => {
+                const cat = String(prod.categoria || '').toLowerCase();
+                const name = String(prod.nombre || '').toLowerCase();
+                const matchesCategory = activeCategory === 'todos' || cat === activeCategory;
+                const matchesSearch = !query || name.includes(query) || cat.includes(query);
+                return matchesCategory && matchesSearch;
+            });
 
-                const matchesCategory = activeCategory === 'todos' || category === activeCategory;
-                const matchesSearch = name.includes(query) || category.includes(query);
+            productsGrid.innerHTML = '';
 
-                card.style.display = (matchesCategory && matchesSearch) ? 'flex' : 'none';
+            if (filtered.length === 0) {
+                productsGrid.innerHTML = '<p style="grid-column: 1 / -1; color: #7c837e; font-size: 0.85rem;">No se encontraron productos con ese filtro.</p>';
+                return;
+            }
+
+            filtered.forEach(prod => {
+                const isOut = Number(prod.stock) <= 0;
+                const article = document.createElement('article');
+                article.className = 'product-card';
+                article.innerHTML = `
+                    <div class="product-img-wrap">
+                        <img src="${prod.imagen}" alt="${prod.nombre}" onerror="this.style.display='none'">
+                    </div>
+                    <span class="product-category">${String(prod.categoria || '').toUpperCase()}</span>
+                    <h2 class="product-title">${prod.nombre}</h2>
+                    ${getStockBadgeHTML(prod.stock)}
+                    <div class="product-footer">
+                        <span class="product-price">${formatMoney(prod.precio)}</span>
+                        <button 
+                            type="button" 
+                            class="add-btn ${isOut ? 'disabled' : ''}" 
+                            ${isOut ? 'disabled title="Producto agotado"' : `onclick="addToCart(${prod.id})" title="Agregar al carrito"`}
+                            aria-label="Agregar ${prod.nombre} al carrito"
+                        >+</button>
+                    </div>
+                `;
+                productsGrid.appendChild(article);
             });
         }
 
@@ -250,19 +332,20 @@
                 pills.forEach(p => p.classList.remove('active'));
                 pill.classList.add('active');
                 activeCategory = pill.dataset.category;
-                filterProducts();
+                renderCatalog();
             });
         });
 
-        searchInput.addEventListener('input', filterProducts);
+        searchInput.addEventListener('input', renderCatalog);
 
-        addButtons.forEach(btn => {
-            btn.addEventListener('click', () => {
-                cartCount++;
-                cartCountEl.textContent = cartCount;
-                cartCountEl.classList.add('visible');
-            });
+        // Sincronizar si cambia localStorage desde otra pestaña o vista
+        window.addEventListener('storage', () => {
+            renderCatalog();
+            updateCartBadge();
         });
+
+        renderCatalog();
+        updateCartBadge();
     </script>
 </body>
 </html>
