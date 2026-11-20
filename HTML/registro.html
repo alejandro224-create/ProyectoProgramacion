@@ -15,7 +15,7 @@
         <section class="left-panel">
             <div class="overlay"></div>
             <!-- El logo de Orbiter -->
-            <img src="logo-orbiter.png" alt="Orbiter Logo" class="brand-logo">
+            <img src="../SOURCES/logo-orbiter.png" alt="Orbiter Logo" class="brand-logo">
         </section>
 
         <!-- Panel Derecho (Formulario de Registro) -->
@@ -26,12 +26,34 @@
 
                 <form action="#" method="POST" class="auth-form">
                     <div class="input-group">
-                        <label for="nombre">Nombre completo</label>
+                        <label for="nombre">Nombre</label>
                         <input 
                             type="text" 
                             id="nombre" 
                             name="nombre" 
-                            placeholder="Marta Habla" 
+                            placeholder="Nombre" 
+                            required
+                        >
+                    </div>
+
+                    <div class="input-group">
+                        <label for="nombre">Apellido</label>
+                        <input 
+                            type="text" 
+                            id="apellido" 
+                            name="apellido" 
+                            placeholder="Apellido" 
+                            required
+                        >
+                    </div>
+
+                    <div class="input-group">
+                        <label for="numero">Numero Telefonico</label>
+                        <input 
+                            type="text"
+                            id="numero" 
+                            name="numero"
+                            placeholder="Numero telefonico" 
                             required
                         >
                     </div>

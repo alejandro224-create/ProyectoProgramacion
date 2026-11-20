@@ -18,13 +18,11 @@ body {
     height: 100vh;
 }
 
-/* --- Panel Izquierdo (Multicapa) --- */
 .left-panel {
     width: 58%;
     height: 100%;
     position: relative;
-    /* La imagen flatlay de fondo que me compartiste */
-    background-image: url('fondo-objetos.jpg');
+    background-image: url('../SOURCES/fondo-objetos.jpg');
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
