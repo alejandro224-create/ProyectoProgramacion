@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Orbiter - Inicio y Catálogo</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../CSS/home.css">
+</head>
+<body>
+    <div class="app-layout">
+        <!-- Barra Lateral Izquierda (Sidebar) -->
+        <aside class="sidebar">
+            <div class="sidebar-top">
+                <div class="logo-box">
+                    <img src="../SOURCES/logo-orbiter.png" alt="Orbiter" class="sidebar-logo">
+                </div>
+
+                <nav class="nav-menu">
+                    <a href="home.html" class="nav-item active">
+                        <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+                            <path d="M3 10.5L12 3l9 7.5V20a1 1 0 0 1-1 1h-5v-6H9v6H4a1 1 0 0 1-1-1v-9.5z"/>
+                        </svg>
+                        <span>Inicio</span>
+                    </a>
+
+                    <a href="#productos" class="nav-item">
+                        <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+                            <path d="M12 3l9 4.5-9 4.5-9-4.5L12 3z"/>
+                            <path d="M3 12l9 4.5 9-4.5"/>
+                            <path d="M3 17l9 4.5 9-4.5"/>
+                        </svg>
+                        <span>Productos</span>
+                    </a>
+
+                    <a href="#carrito" class="nav-item" id="nav-carrito">
+                        <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+                            <circle cx="9" cy="20" r="1.5"/>
+                            <circle cx="18" cy="20" r="1.5"/>
+                            <path d="M3 4h2l2.4 11.2a1 1 0 0 0 1 .8h9.8a1 1 0 0 0 1-.8L21 7H6"/>
+                        </svg>
+                        <span>Carrito</span>
+                        <span class="cart-badge" id="cart-count">0</span>
+                    </a>
+
+                    <a href="#compras" class="nav-item">
+                        <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+                            <path d="M6 3h12v18l-3-2-3 2-3-2-3 2V3z"/>
+                            <line x1="9" y1="8" x2="15" y2="8"/>
+                            <line x1="9" y1="12" x2="15" y2="12"/>
+                        </svg>
+                        <span>Compras</span>
+                    </a>
+
+                    <a href="#usuarios" class="nav-item">
+                        <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+                            <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/>
+                            <circle cx="9" cy="7" r="4"/>
+                            <path d="M22 21v-2a4 4 0 0 0-3-3.87"/>
+                            <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+                        </svg>
+                        <span>Usuarios</span>
+                    </a>
+
+                    <a href="#reportes" class="nav-item">
+                        <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+                            <line x1="6" y1="20" x2="6" y2="14"/>
+                            <line x1="12" y1="20" x2="12" y2="9"/>
+                            <line x1="18" y1="20" x2="18" y2="5"/>
+                        </svg>
+                        <span>Reportes</span>
+                    </a>
+                </nav>
+            </div>
+
+            <!-- Pie del Sidebar (Usuario y Cerrar sesión) -->
+            <div class="sidebar-footer">
+                <div class="user-profile">
+                    <div class="user-avatar">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+                            <circle cx="12" cy="12" r="9"/>
+                            <circle cx="12" cy="9.5" r="3"/>
+                            <path d="M6.8 18.2a6.5 6.5 0 0 1 10.4 0"/>
+                        </svg>
+                    </div>
+                    <div class="user-info">
+                        <span class="user-email">Correo electrónico</span>
+                        <span class="user-role">Administrador</span>
+                    </div>
+                </div>
+
+                <a href="login.html" class="logout-btn" title="Cerrar sesión">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/>
+                        <polyline points="16 17 21 12 16 7"/>
+                        <line x1="21" y1="12" x2="9" y2="12"/>
+                    </svg>
+                </a>
+            </div>
+        </aside>
+
+        <!-- Contenido Principal -->
+        <main class="main-content">
+            <!-- Barra de Búsqueda Superior -->
+            <header class="top-bar">
+                <div class="search-box">
+                    <svg class="search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <circle cx="11" cy="11" r="7"/>
+                        <line x1="21" y1="21" x2="16.65" y2="16.65"/>
+                    </svg>
+                    <input 
+                        type="text" 
+                        id="search-input" 
+                        placeholder="Buscar" 
+                        aria-label="Buscar productos"
+                    >
+                </div>
+            </header>
+
+            <!-- Sección Catálogo -->
+            <section class="catalog-section">
+                <span class="catalog-label">CATÁLOGO</span>
+
+                <!-- Filtros por categoría -->
+                <div class="filter-pills" id="filter-pills">
+                    <button class="pill active" data-category="todos">Todos</button>
+                    <button class="pill" data-category="accesorios">Accesorios</button>
+                    <button class="pill" data-category="audio">Audio</button>
+                    <button class="pill" data-category="calzado">Calzado</button>
+                </div>
+
+                <!-- Grid de Productos -->
+                <div class="products-grid" id="products-grid">
+                    <!-- Producto 1 -->
+                    <article class="product-card" data-category="audio" data-name="audiculares tws stf">
+                        <div class="product-img-wrap">
+                            <img src="../SOURCES/productos/audiculares-tws.png" alt="Audiculares TWS STF">
+                        </div>
+                        <span class="product-category">AUDIO</span>
+                        <h2 class="product-title">Audiculares TWS STF</h2>
+                        <span class="status-badge status-available">• Disponible</span>
+                        <div class="product-footer">
+                            <span class="product-price">$400.00</span>
+                            <button type="button" class="add-btn" title="Agregar al carrito" aria-label="Agregar Audiculares TWS STF al carrito">+</button>
+                        </div>
+                    </article>
+
+                    <!-- Producto 2 -->
+                    <article class="product-card" data-category="calzado" data-name="tenis miu miu tyre sports">
+                        <div class="product-img-wrap">
+                            <img src="../SOURCES/productos/tenis-miu-miu.png" alt="Tenis Miu Miu Tyre Sports">
+                        </div>
+                        <span class="product-category">CALZADO</span>
+                        <h2 class="product-title">Tenis Miu Miu Tyre Sports</h2>
+                        <span class="status-badge status-low">• 8 restantes</span>
+                        <div class="product-footer">
+                            <span class="product-price">$4,700.00</span>
+                            <button type="button" class="add-btn" title="Agregar al carrito" aria-label="Agregar Tenis Miu Miu Tyre Sports al carrito">+</button>
+                        </div>
+                    </article>
+
+                    <!-- Producto 3 -->
+                    <article class="product-card" data-category="audio" data-name="audífonos in-ear gamer kz">
+                        <div class="product-img-wrap">
+                            <img src="../SOURCES/productos/audifonos-kz.png" alt="Audífonos in-ear gamer KZ">
+                        </div>
+                        <span class="product-category">AUDIO</span>
+                        <h2 class="product-title">Audífonos in-ear gamer KZ</h2>
+                        <span class="status-badge status-out">• Agotado</span>
+                        <div class="product-footer">
+                            <span class="product-price">$1,500.00</span>
+                            <button type="button" class="add-btn disabled" disabled title="Producto agotado" aria-label="Producto agotado">+</button>
+                        </div>
+                    </article>
+
+                    <!-- Producto 4 -->
+                    <article class="product-card" data-category="calzado" data-name="zapatillas clásicas piel">
+                        <div class="product-img-wrap">
+                            <img src="../SOURCES/productos/zapatillas-piel.png" alt="Zapatillas clásicas piel">
+                        </div>
+                        <span class="product-category">CALZADO</span>
+                        <h2 class="product-title">Zapatillas clásicas piel</h2>
+                        <span class="status-badge status-available">• Disponible</span>
+                        <div class="product-footer">
+                            <span class="product-price">$1,850.00</span>
+                            <button type="button" class="add-btn" title="Agregar al carrito" aria-label="Agregar Zapatillas clásicas piel al carrito">+</button>
+                        </div>
+                    </article>
+
+                    <!-- Producto 5 -->
+                    <article class="product-card" data-category="audio" data-name="audífonos cableados sport">
+                        <div class="product-img-wrap">
+                            <img src="../SOURCES/productos/audifonos-sport.png" alt="Audífonos cableados sport">
+                        </div>
+                        <span class="product-category">AUDIO</span>
+                        <h2 class="product-title">Audífonos cableados sport</h2>
+                        <span class="status-badge status-low">• 5 restantes</span>
+                        <div class="product-footer">
+                            <span class="product-price">$320.00</span>
+                            <button type="button" class="add-btn" title="Agregar al carrito" aria-label="Agregar Audífonos cableados sport al carrito">+</button>
+                        </div>
+                    </article>
+
+                    <!-- Producto 6 -->
+                    <article class="product-card" data-category="accesorios" data-name="lentes solares urbanos">
+                        <div class="product-img-wrap">
+                            <img src="../SOURCES/productos/lentes-solares.png" alt="Lentes solares urbanos">
+                        </div>
+                        <span class="product-category">ACCESORIOS</span>
+                        <h2 class="product-title">Lentes solares urbanos</h2>
+                        <span class="status-badge status-available">• Disponible</span>
+                        <div class="product-footer">
+                            <span class="product-price">$650.00</span>
+                            <button type="button" class="add-btn" title="Agregar al carrito" aria-label="Agregar Lentes solares urbanos al carrito">+</button>
+                        </div>
+                    </article>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <script>
+        const pills = document.querySelectorAll('.pill');
+        const cards = document.querySelectorAll('.product-card');
+        const searchInput = document.getElementById('search-input');
+        const addButtons = document.querySelectorAll('.add-btn:not(.disabled)');
+        const cartCountEl = document.getElementById('cart-count');
+
+        let activeCategory = 'todos';
+        let cartCount = 0;
+
+        function filterProducts() {
+            const query = searchInput.value.trim().toLowerCase();
+
+            cards.forEach(card => {
+                const category = card.dataset.category;
+                const name = card.dataset.name.toLowerCase();
+
+                const matchesCategory = activeCategory === 'todos' || category === activeCategory;
+                const matchesSearch = name.includes(query) || category.includes(query);
+
+                card.style.display = (matchesCategory && matchesSearch) ? 'flex' : 'none';
+            });
+        }
+
+        pills.forEach(pill => {
+            pill.addEventListener('click', () => {
+                pills.forEach(p => p.classList.remove('active'));
+                pill.classList.add('active');
+                activeCategory = pill.dataset.category;
+                filterProducts();
+            });
+        });
+
+        searchInput.addEventListener('input', filterProducts);
+
+        addButtons.forEach(btn => {
+            btn.addEventListener('click', () => {
+                cartCount++;
+                cartCountEl.textContent = cartCount;
+                cartCountEl.classList.add('visible');
+            });
+        });
+    </script>
+</body>
+</html>
