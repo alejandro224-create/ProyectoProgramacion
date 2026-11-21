@@ -1,8 +1,8 @@
 <?php
-$host = 'localhost';
-$dbname = 'orbiter_db';
-$username = 'root';
-$password = 'Ryu0405.';
+$host = 'sql110.infinityfree.com';
+$dbname = 'if0_42742175_orbital_db';
+$username = 'if0_42742175';
+$password = 'ryuen0405';
 $charset = 'utf8mb4';
 
 $dsn = "mysql:host=$host;dbname=$dbname;charset=$charset";
